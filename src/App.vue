@@ -4,6 +4,7 @@
         <div class="app__user-list">
             <h2>Пользователи</h2>
             <button @click="showModal = !showModal">Добавить</button>
+            <button @click="setDefaultUsers">Сбросить localStorage</button>
 
             <div class="app__user-table">
                 <div class="app__user-row app__user-row--header">
@@ -100,6 +101,38 @@
 </template>
 
 <script>
+const defaultUsers = [
+    {
+        id: 1,
+        name: 'Марина',
+        phone: '+7 941 123 21 42',
+        managerId: null,
+    },
+    {
+        id: 2,
+        name: 'Петр',
+        phone: '+7 941 123 21 00',
+        managerId: null,
+    },
+    {
+        id: 3,
+        name: 'Алексей',
+        phone: '+7 921 555 78 00',
+        managerId: 1,
+    },
+    {
+        id: 4,
+        name: 'Яков',
+        phone: '+7 921 555 78 55',
+        managerId: 1,
+    },
+    {
+        id: 5,
+        name: 'Иван',
+        phone: '+7 921 555 78 99',
+        managerId: 3,
+    },
+];
 export default {
     name: 'App',
     data() {
@@ -107,32 +140,7 @@ export default {
             showModal: true,
             sortKey: 'id',
             sortOrder: 'desc',
-            users: [
-                {
-                    id: 1,
-                    name: 'Марина',
-                    phone: '+7 941 123 21 42',
-                    managerId: null,
-                },
-                {
-                    id: 2,
-                    name: 'Петр',
-                    phone: '+7 941 123 21 42',
-                    managerId: null,
-                },
-                {
-                    id: 3,
-                    name: 'Алексей',
-                    phone: '+7 921 555 78 90',
-                    managerId: 1,
-                },
-                {
-                    id: 4,
-                    name: 'Иван',
-                    phone: '+7 921 555 78 90',
-                    managerId: 3,
-                },
-            ],
+            users: [...defaultUsers],
             sortedUsers: [],
             newName: '',
             newPhone: '',
@@ -202,40 +210,17 @@ export default {
             this.newPhone = '';
             this.newManagerId = null;
         },
+        setDefaultUsers() {
+            localStorage.removeItem('users');
+            this.users = [...defaultUsers];
+            this.sortUsers();
+        },
     },
     mounted() {
         // Загружаем из localStorage, если есть
         const savedUsers = localStorage.getItem('users');
         if (savedUsers) {
             this.users = JSON.parse(savedUsers);
-        } else {
-            // Иначе можно подгрузить дефолтный массив (если он в data задан)
-            this.users = [
-                {
-                    id: 1,
-                    name: 'Марина',
-                    phone: '+7 941 123 21 42',
-                    managerId: null,
-                },
-                {
-                    id: 2,
-                    name: 'Петр',
-                    phone: '+7 941 123 21 42',
-                    managerId: null,
-                },
-                {
-                    id: 3,
-                    name: 'Алексей',
-                    phone: '+7 921 555 78 90',
-                    managerId: 1,
-                },
-                {
-                    id: 4,
-                    name: 'Иван',
-                    phone: '+7 921 555 78 90',
-                    managerId: 3,
-                },
-            ];
         }
         this.sortUsers();
     },
