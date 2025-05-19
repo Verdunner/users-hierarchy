@@ -1,19 +1,31 @@
-# users-hierarchy
+## Users-hierarchy
 
-## Project setup
-```
-npm install
-```
+### Таблица юзеров с рекурсивной вложенностью данных
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+![preview.png](https://github.com/Verdunner/users-hierarchy/blob/main/public/preview.png)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+---
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## Команды для запуска проекта
+
+1. `npm install` (Node v22.11.0, npm v11.1.0)
+
+2. `npm run start` или `npm run build`
+
+---
+
+### Стек технологий проекта:
+
+#### Основные зависимости:
+
+-   Vue 2.6 (Options API)
+
+-   core-js полифиллы
+
+#### Dev зависимости:
+
+-   @vue/cli-service (на базе webpack)
+
+-   @vue/cli-plugin-babel
+
+-   vue-template-compiler
