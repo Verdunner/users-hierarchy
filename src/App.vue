@@ -228,6 +228,12 @@ export default {
 </script>
 
 <style scoped>
+* {
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
 .app {
     display: flex;
     gap: 20px;
@@ -256,6 +262,7 @@ export default {
     font-weight: bold;
     border: none;
     padding-bottom: 8px;
+    cursor: pointer;
 }
 
 .app__cell {
